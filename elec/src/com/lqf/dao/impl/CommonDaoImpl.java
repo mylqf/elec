@@ -78,8 +78,9 @@ public class CommonDaoImpl<T>  extends HibernateDaoSupport implements ICommonDao
 
         //方式二
         List<T> list=this.getHibernateTemplate().execute(new HibernateCallback<List<T>>() {
+
             @Override
-            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+            public List<T> doInHibernate(Session session) throws HibernateException, SQLException {
                 Query query=session.createQuery(finalHql);
                 if (params!=null && params.length>0){
                     for (int i=0;i<params.length;i++){
